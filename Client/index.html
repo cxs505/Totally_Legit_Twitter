@@ -10,21 +10,25 @@
 <body>
     <header>
         <h1>Welcome to twitter</h1>
-
     </header>
     <main>
         <div id="formContainer">
-            <form id="newPost">
-                <input type="text">
-                <input type="submit">
+            <form id="newPostForm">
+                <label for="newPost"></label>
+                <textarea id="newPost" name="newPost"></textarea>
+                <input type="submit" value="Post">
             </form>
         </div>
-        <div    id="timeline">
-
+        <div id="timeline">
+            <ul>
+                <li>original comment 1</li>
+                <li>original comment 2</li>
+                <li>...</li>
+            </ul>
         </div>
     </main>
     <footer>
-
+        <p></p>
     </footer>
 </body>
 </html>
