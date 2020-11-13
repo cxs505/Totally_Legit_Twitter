@@ -1,15 +1,15 @@
-const express = require("express")
-const app = express()
-const port = process.env.PORT || 3000
+const express = require("express");
+const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.json())
+const app = express();
+app.use(bodyParser.json());
 
 
 
-//data from the posts will be sored here
+//data from the posts will be stored here
 const bP = [
-    {post: "welcome to Legit twitter. Please type a message under 150 characters."}
+    {post: "welcome to Totally Legit Twitter. Please type a message under 150 characters."}
 ]
 
 app.get('/', (req, res) => {
@@ -25,4 +25,4 @@ app.post("/blogpost"), (req, res) => {
 }
 
 
-app.listen(port, () => console.log(`connected to ${port}`))
+app.listen(port, () => console.log(`Server started in http://localhost:${port}`));

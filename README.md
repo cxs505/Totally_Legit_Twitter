@@ -1,6 +1,16 @@
 # Totally_Legit_Twitter
 Our first group project.
 
+## Instructions
+- Be sure to install all dependencies!
+    - First go to the directory where the package.json is
+    ```bash
+    cd server
+    ```
+    - Then run the install command
+    ```bash
+    npm install
+    ```
 
 ## Goal No.1
 - Create a basic home page that allows user interaction.
@@ -27,6 +37,7 @@ Our first group project.
 ## Goal No.3
 - Add the ability to react with emojis to both original posts and replies
 - Add the ability to post gifs from giphy
+- Increase test coverage to above 60%
 
 ## Future Goals
 - Let's make everything up to goal 3 first and we decide then :P
