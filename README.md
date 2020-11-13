@@ -11,6 +11,11 @@ Our first group project.
     ```bash
     npm install
     ```
+- After that you need to start the server:
+    ```bash
+    npm run start
+    ```
+- Finally open the index.html with your browser. Have Hun!
 
 ## Goal No.1
 - Create a basic home page that allows user interaction.
