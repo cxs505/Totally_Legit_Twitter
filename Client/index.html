@@ -20,10 +20,18 @@
             </form>
         </div>
         <div id="timeline">
-            <ul>
-                <li>original comment 1</li>
-                <li>original comment 2</li>
-                <li>...</li>
+            <ul id="originalPosts">
+                <li>original post 1</li>
+                <li>original post 2</li>
+                <li>
+                    <ul id="replyThread">
+                        <li> post 2 - reply 1</li>
+                        <li> post 2 - reply 2</li>
+                        <li> further replies to original post 2 will be added to this nested list</li>
+                    </ul>
+                </li>
+                <li> original post 3</li>
+                <li> new original posts will be added to the outer list (id=originalPosts)</li>
             </ul>
         </div>
     </main>

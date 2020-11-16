@@ -25,6 +25,14 @@ li {
     list-style: none;
 }
 
+#originalPosts {
+    background-color: lightblue;
+}
+
+#replyThread {
+    background-color: lightpink;
+}
+
 footer {
     position: sticky;
     bottom: auto;
