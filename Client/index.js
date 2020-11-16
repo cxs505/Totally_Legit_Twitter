@@ -19,16 +19,16 @@
 // ]
 
 const newPost=document.getElementById('originalPosts');
-const myForm=document.getElementById('newPostForm')
-myForm.addEventListener('submit', getAllFeed)
+const myForm=document.getElementById('newPostForm');
+myForm.addEventListener('submit', getAllFeed);
 
-getAllFeed()
+getAllFeed();
 
 function getAllFeed(){
   fetch('http://localhost:3000/blogpost')
-      .then(r => r.json())
-      .then(appendpost)
-      .catch(console.warn)
+    .then(r => r.json())
+    .then(appendpost)
+    .catch(console.warn)
 };
 
 function appendpost(data){
@@ -48,15 +48,15 @@ function submitPost(e){
       "Content-Type": "application/text"
     }
   };
-  fetch('http://localhost:3000/blogpost', options)
-        .then(r => r.json())
-        .then(appendfeeds)
-        .catch(console.warn)
 
-}
+  fetch('http://localhost:3000/blogpost', options)
+    .then(r => r.json())
+    .then(appendfeeds)
+    .catch(console.warn)
+};
 
 function appendfeeds(post){
     const newLi = document.createElement('li');
     newLi.textContent = `${posts[-1]}`
     newPost.append(newLi);
-};
+  };

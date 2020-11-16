@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const port = 3000;
+
 const app = express();
-
-const port = process.env.PORT || 3000;
-const bodyParser = require("body-parser");
-const cors = require("cors")
-
-const cors=require("cors")
-
-
 app.use(bodyParser.json());
-app.use(cors);
+app.use(cors());
+
+app.listen(port, () => console.log(`Server started! Visit http://localhost:${port} !`));
+
+
 blogposts=[]
 
 //data from the posts will be stored here
@@ -18,10 +18,8 @@ const bP = [
 ]
 
 app.get('/', (req, res) => {
-    res.send("Hello AH su")
-  });
-
-//
+    res.send("Hello World!")
+});
 
 app.get("/blogPost", (req, res) => res.send({bP}))
 // Post request for form
@@ -31,6 +29,3 @@ app.post("/blogPost"), (req, res) => {
     bP.push(newPost);
     res.status(201).send(newPost)
 }
-
-
-app.listen(port, () => console.log(`Server started in http://localhost:${port}`));
