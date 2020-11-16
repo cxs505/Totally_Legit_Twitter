@@ -1,15 +1,19 @@
 const express = require("express");
+const app = express();
+
 const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 
-const app = express();
-app.use(bodyParser.json());
+const cors=require("cors")
 
-posts=[]
+
+app.use(bodyParser.json());
+app.use(cors);
+blogposts=[]
 
 //data from the posts will be stored here
 const bP = [
-    {post: "welcome to Totally Legit Twitter. Please type a message under 150 characters."}
+    {post: "welcome to Totally Legit Twitter. Please type a message under 150 characters."},
 ]
 
 app.get('/', (req, res) => {
