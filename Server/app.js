@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json())
 
-
+posts=[]
 
 //data from the posts will be sored here
 const bP = [

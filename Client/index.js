@@ -30,12 +30,12 @@ function getAllFeed(){
         .catch(console.warn)
 };
 
-function appendfeed(data){
+function appendpost(data){
     data.posts.forEach(appendfeeds);
 };
 
-function appendCat(catData){
+function appendfeeds(post){
     const newLi = document.createElement('li');
-    newLi.textContent = `Name: ${catData.name} || Age: ${catData.age}`
-    catsList.append(newLi);
+    newLi.textContent = `${posts[-1]}`
+    btn.append(newLi);
 };
