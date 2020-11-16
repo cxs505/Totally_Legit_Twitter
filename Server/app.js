@@ -5,27 +5,25 @@ const port = 3000;
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({origin: '*'}))
 
 app.listen(port, () => console.log(`Server started! Visit http://localhost:${port} !`));
 
-
-blogposts=[]
-
 //data from the posts will be stored here
-const bP = [
-    {post: "welcome to Totally Legit Twitter. Please type a message under 150 characters."},
-]
+const timeline = [
+    {post: "original post 1.", replies: ["1st reply to post 1", "2nd reply to post 1"]},
+    {post: "original post 2", replies: []},
+    {post: "original post 3.", replies: ["1st reply to post 3", "2nd reply to post 3"]},
+];
 
-app.get('/', (req, res) => {
-    res.send("Hello World!")
-});
+app.get('/', (req, res) => {res.send("Hello World!")});
 
-app.get("/blogPost", (req, res) => res.send({bP}))
-// Post request for form
-app.post("/blogPost"), (req, res) => {
-    const blogPost = req.body;
-    const newPost = {blogPost};
-    bP.push(newPost);
+app.get("/blogpost", (req, res) => res.send({timeline}));
+
+app.post("/blogpost"), (req, res) => {
+    const postText = req.body;
+    const newPost = {...postText};
+    timeline.push(newPost);
+    res.header("Access-Control-Allow-Origin", '*');
     res.status(201).send(newPost)
-}
+};

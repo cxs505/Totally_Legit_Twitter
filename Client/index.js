@@ -13,18 +13,15 @@
 //   }
 // }
 
-// feed =[
-    
-
-// ]
 
 const newPost=document.getElementById('originalPosts');
+const newReply=document.getElementsByTagName('')
 const myForm=document.getElementById('newPostForm');
-myForm.addEventListener('submit', getAllFeed);
+myForm.addEventListener('submit', postOriginal);
 
-getAllFeed();
+displayTimeline();
 
-function getAllFeed(){
+function displayTimeline(){
   fetch('http://localhost:3000/blogpost')
     .then(r => r.json())
     .then(appendpost)
@@ -32,20 +29,33 @@ function getAllFeed(){
 };
 
 function appendpost(data){
-    data.posts.forEach(appendfeeds);
+  data.timeline.forEach(appendfeeds);
 };
 
+function appendfeeds(timeline){
+  const newLiPost = document.createElement('li');
+  newLiPost.textContent = `${timeline.post}`
+  newPost.append(newLiPost);
+  timeline.replies.forEach(reply => displayReply(reply));
+};
 
-function submitPost(e){
+function displayReply(data) {
+  const newReplyThread = document.createElement('ul');
+  const newReply = document.createElement('li');
+  newReply.textContent = `${data}`
+  newReplyThread.append(newReply)
+  newPost.appendChild(newReplyThread);
+};
+
+function postOriginal (e) {
   e.preventDefault();
+  const postText=e.target.newPost.value;
 
-  const postData=e.target;
-
-  const options ={
+  const options = {
     method: 'POST',
-    body: postData,
+    body: JSON.stringify(postText),
     headers: {
-      "Content-Type": "application/text"
+      "Content-Type": "application/json"
     }
   };
 
@@ -54,9 +64,3 @@ function submitPost(e){
     .then(appendfeeds)
     .catch(console.warn)
 };
-
-function appendfeeds(post){
-    const newLi = document.createElement('li');
-    newLi.textContent = `${posts[-1]}`
-    newPost.append(newLi);
-  };
