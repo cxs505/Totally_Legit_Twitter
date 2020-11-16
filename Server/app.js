@@ -1,9 +1,12 @@
 const express = require("express")
 const app = express()
 const port = process.env.PORT || 3000
+
 const bodyParser = require("body-parser");
+const cors = require("cors")
 
 app.use(bodyParser.json())
+app.use(cors)
 
 
 
@@ -13,16 +16,21 @@ const bP = [
 ]
 
 app.get('/', (req, res) => {
-    res.send("Hello World")
+    res.send("Hello AH su")
   });
 
+//
+
+app.get("/blogPost", (req, res) => res.send({bP}))
 // Post request for form
-app.post("/blogpost"), (req, res) => {
-    const blogpost = req.body;
-    const newPost = {blogpost};
+app.post("/blogPost"), (req, res) => {
+    const blogPost = req.body;
+    const newPost = {blogPost};
     bP.push(newPost);
     res.status(201).send(newPost)
 }
 
 
 app.listen(port, () => console.log(`connected to ${port}`))
+
+module.exports = app
