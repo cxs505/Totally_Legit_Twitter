@@ -1,19 +1,3 @@
-// const ConfirmBtn = document.getElementById("new-post");
-// ConfirmBtn.addEventListener("mouseover", sendReady);
-
-// let checkbox = true;
-
-// function sendReady() {
-//   if (checkbox) {
-//     modeCheck.innerText = "Waiting to Submit";
-//     checkbox = false;
-//   } else {
-//     modeCheck.innerText = "Ready to Submit";
-//     checkbox = true;
-//   }
-// }
-
-
 const newPost=document.getElementById('originalPosts');
 const newReply=document.getElementsByTagName('')
 const myForm=document.getElementById('newPostForm');
@@ -53,6 +37,7 @@ function postOriginal (e) {
 
   const options = {
     method: 'POST',
+    mode: 'cors',
     body: JSON.stringify(postText),
     headers: {
       "Content-Type": "application/json"

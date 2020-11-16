@@ -20,10 +20,10 @@ app.get('/', (req, res) => {res.send("Hello World!")});
 
 app.get("/blogpost", (req, res) => res.send({timeline}));
 
-app.post("/blogpost"), (req, res) => {
+app.post("/blogpost", (req, res) => {
     const postText = req.body;
     const newPost = {...postText};
     timeline.push(newPost);
     res.header("Access-Control-Allow-Origin", '*');
     res.status(201).send(newPost)
-};
+});
