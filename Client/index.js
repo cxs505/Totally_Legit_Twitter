@@ -26,7 +26,7 @@ btn.addEventListener('click', getAllFeed)
 function getAllFeed(){
     fetch('http://localhost:3000/feed')
         .then(r => r.json())
-        .then(appendfeed)
+        .then(appendfeeds)
         .catch(console.warn)
 };
 

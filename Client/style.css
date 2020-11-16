@@ -5,7 +5,7 @@
 }
 
 :root {
-    --headerFooterBackground : lightgray;
+    --headerFooterBackground : lightblue;
     --headerFooterText : white;
 }
 
@@ -20,11 +20,19 @@ body {
     display: flex;
     flex-direction:column;
     justify-content: center;
-    
 }
 
+#formContainer {
+    /* min-height: 20vw; */
+    background-color: lightyellow;
+}
+
+/* #timeline {
+    min-height: 80vw;
+} */
+
 #originalPosts {
-    background-color: lightblue;
+    background-color: lightgray;
 }
 
 #originalPosts ul {
