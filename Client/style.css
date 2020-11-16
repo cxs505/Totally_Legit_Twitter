@@ -1,0 +1,33 @@
+* {
+    text-align: center;
+    /* border: 1px solid red;
+    box-sizing: border-box; */
+}
+
+:root {
+    --headerFooterBackground : lightgray;
+    --headerFooterText : white;
+}
+
+header {
+    position: sticky;
+    top: auto;
+    background-color: var(--headerFooterBackground);
+    color: var(--headerFooterText)
+}
+
+body {
+    display: grid;
+    
+}
+
+li {
+    list-style: none;
+}
+
+footer {
+    position: sticky;
+    bottom: auto;
+    background-color: var(--headerFooterBackground);
+    color: var(--headerFooterText)
+}
