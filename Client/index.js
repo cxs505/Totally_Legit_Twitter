@@ -37,11 +37,13 @@ function postOriginal (e) {
 
   const options = {
     method: 'POST',
-    mode: 'cors',
-    body: JSON.stringify(postText),
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({
+      post:postText,
+      replies:""
+    })
   };
 
   fetch('http://localhost:3000/blogpost', options)
