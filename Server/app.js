@@ -12,9 +12,9 @@ app.listen(port, () => console.log(`Server started! Visit http://localhost:${por
 
 //data from the posts will be stored here
 const timeline = [
-    {post: "original post 1.", replies: ["1st reply to post 1", "2nd reply to post 1"]},
-    {post: "original post 2", replies: []},
-    {post: "original post 3.", replies: ["1st reply to post 3", "2nd reply to post 3"]},
+    {id: 1, post: "original post 1.", replies: ["1st reply to post 1", "2nd reply to post 1"]},
+    {id: 2, post: "original post 2", replies: []},
+    {id: 3, post: "original post 3.", replies: ["1st reply to post 3", "2nd reply to post 3",]},
 ];
 
 app.get('/', (req, res) => {
@@ -25,10 +25,18 @@ app.get("/blogpost", (req, res) => {
     res.send({timeline})
 });
 
-app.post("/blogpost", (req, res) => {
+app.post("/newpost", (req, res) => {
     const originalPost = req.body.post;
     const postReplies = req.body.replies;
-    const newPost = {post: originalPost, replies:postReplies};
+    const newId = timeline.length+1;
+    const newPost = {id: newId, post: originalPost, replies:postReplies};
     timeline.push(newPost);
     res.status(201).send(newPost)
+});
+
+app.post("/newreply", (req, res) => {
+    const replyId = req.body.id;
+    const replyText = req.body.replies; //check postdata to match
+    timeline[+replyId-1].replies.push(replyText);
+    res.status(201);    //not sure about this
 });
