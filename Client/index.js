@@ -18,9 +18,9 @@
 
 // ]
 
-const newPost=document.getElementById('originalPosts');
-const myForm=document.getElementById('newPostForm');
-myForm.addEventListener('submit', getAllFeed);
+
+const myForm=document.getElementById('submitID');
+myForm.addEventListener('submit', submitPost);
 
 getAllFeed();
 
@@ -32,20 +32,20 @@ function getAllFeed(){
 };
 
 function appendpost(data){
-    data.posts.forEach(appendfeeds);
+    data.bP.forEach(appendfeeds);
 };
 
 
 function submitPost(e){
   e.preventDefault();
 
-  const postData=e.target;
+  const postData=e.target.post.value;
 
   const options ={
     method: 'POST',
-    body: postData,
+    body: JSON.stringify(postData),
     headers: {
-      "Content-Type": "application/text"
+      "Content-Type": "application/json"
     }
   };
 
@@ -55,8 +55,9 @@ function submitPost(e){
     .catch(console.warn)
 };
 
+const newPost=document.getElementById('originalPosts');
 function appendfeeds(post){
     const newLi = document.createElement('li');
-    newLi.textContent = `${posts[-1]}`
+    newLi.textContent = `${bP.post}`
     newPost.append(newLi);
   };
