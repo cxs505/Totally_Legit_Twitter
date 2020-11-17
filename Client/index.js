@@ -21,14 +21,29 @@ function appendfeeds(timeline){
   newLiPost.textContent = `${timeline.post}`
   newPost.append(newLiPost);
   timeline.replies.forEach(reply => displayReply(reply));
+
+  const replyBtn =document.createElement('button')
+  replyBtn.innerHTML="Reply";
+  newLiPost.append(replyBtn);
+  
 };
+
+function appendReplyBtn(){
+  const replyBtn =document.createElement('button')
+  replyBtn.innerHTML="Reply";
+  newLiPost.append(replyBtn);
+}
 
 function displayReply(data) {
   const newReplyThread = document.createElement('ul');
   const newReply = document.createElement('li');
+
+
   newReply.textContent = `${data}`
   newReplyThread.append(newReply)
+  
   newPost.appendChild(newReplyThread);
+
 };
 
 function postOriginal (e) {
@@ -42,7 +57,7 @@ function postOriginal (e) {
     },
     body: JSON.stringify({
       post:postText,
-      replies:""
+      replies:[]
     })
   };
 
