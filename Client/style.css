@@ -34,18 +34,17 @@ body {
 } */
 
 #originalPosts {
-    background-color: darkred;
+    background-color: lightgray;
 }
 
 #originalPosts ul {
-    background-color: red;
+    background-color: lightpink;
 }
 
 li {
     list-style: none;
     margin: 10px;
 }
-
 
 footer {
     position: fixed;
@@ -94,10 +93,10 @@ footer ul li a {
     padding: 5px 10px;
     border-radius: 3%;
 }
-main {
+/* main {
     width :75%;
     position: relative;
     top: 40px;
     
-}
+} */
 
