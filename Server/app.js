@@ -5,7 +5,6 @@ const port = 3000;
 
 const app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.text());
 app.use(cors());
 
 app.listen(port, () => console.log(`Server started! Visit http://localhost:${port} !`));
@@ -38,5 +37,5 @@ app.post("/newreply", (req, res) => {
     const replyId = req.body.id;
     const replyText = req.body.replies; //check postdata to match
     timeline[+replyId-1].replies.push(replyText);
-    res.status(201);    //not sure about this
+    res.status(201);    //we need to send something back, but can't find what to send
 });

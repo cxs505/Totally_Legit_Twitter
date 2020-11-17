@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 const newPost=document.getElementById('originalPosts');
 const myForm=document.getElementById('newPostForm');
 myForm.addEventListener('submit', postOriginal);
