@@ -38,5 +38,5 @@ app.post("/newreply", (req, res) => {
     const replyId = req.body.id;
     const replyText = req.body.replies; //check postdata to match
     timeline[+replyId-1].replies.push(replyText);
-    res.status(201).send({timeline})     //not sure about this
+    res.status(201);    //not sure about this
 });
