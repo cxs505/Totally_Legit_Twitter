@@ -9,7 +9,9 @@
     --headerFooterText : white;
 }
 
-header {
+
+nav {
+    align-items:center; 
     position: sticky;
     top: auto;
     background-color: var(--headerFooterBackground);
@@ -32,11 +34,11 @@ body {
 } */
 
 #originalPosts {
-    background-color: lightgray;
+    background-color: darkred;
 }
 
 #originalPosts ul {
-    background-color: lightpink;
+    background-color: red;
 }
 
 li {
@@ -44,9 +46,58 @@ li {
     margin: 10px;
 }
 
+
 footer {
-    position: sticky;
-    bottom: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: var(--headerFooterBackground);
-    color: var(--headerFooterText)
+    color: var(--headerFooterText);
+    text-align: center;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-right: 0px;
 }
+    
+footer ul li {
+    
+    display:inline;
+    list-style: none;
+    padding-right: 20px;
+}
+  
+footer ul li a {
+    text-decoration: none;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+  
+.header-nav ul {
+    display: flex;
+}
+  
+.header-nav ul li {
+    list-style: none;
+    padding-right: 20px;
+}
+  
+#sign-in {
+    color: white;
+    background-color: #4285f4;
+    border-color: black;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3%;
+}
+main {
+    width :75%;
+    position: relative;
+    top: 40px;
+    
+}
+
