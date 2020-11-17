@@ -1,30 +1,11 @@
-// const ConfirmBtn = document.getElementById("new-post");
-// ConfirmBtn.addEventListener("mouseover", sendReady);
+const newPost=document.getElementById('originalPosts');
+const newReply=document.getElementsByTagName('')
+const myForm=document.getElementById('newPostForm');
+myForm.addEventListener('submit', postOriginal);
 
-// let checkbox = true;
+displayTimeline();
 
-// function sendReady() {
-//   if (checkbox) {
-//     modeCheck.innerText = "Waiting to Submit";
-//     checkbox = false;
-//   } else {
-//     modeCheck.innerText = "Ready to Submit";
-//     checkbox = true;
-//   }
-// }
-
-// feed =[
-    
-
-// ]
-
-
-const myForm=document.getElementById('submitID');
-myForm.addEventListener('submit', submitPost);
-
-getAllFeed();
-
-function getAllFeed(){
+function displayTimeline(){
   fetch('http://localhost:3000/blogpost')
     .then(r => r.json())
     .then(appendpost)
@@ -32,21 +13,37 @@ function getAllFeed(){
 };
 
 function appendpost(data){
-    data.bP.forEach(appendfeeds);
+  data.timeline.forEach(appendfeeds);
 };
 
+function appendfeeds(timeline){
+  const newLiPost = document.createElement('li');
+  newLiPost.textContent = `${timeline.post}`
+  newPost.append(newLiPost);
+  timeline.replies.forEach(reply => displayReply(reply));
+};
 
-function submitPost(e){
+function displayReply(data) {
+  const newReplyThread = document.createElement('ul');
+  const newReply = document.createElement('li');
+  newReply.textContent = `${data}`
+  newReplyThread.append(newReply)
+  newPost.appendChild(newReplyThread);
+};
+
+function postOriginal (e) {
   e.preventDefault();
+  const postText=e.target.newPost.value;
 
-  const postData=e.target.post.value;
-
-  const options ={
+  const options = {
     method: 'POST',
-    body: JSON.stringify(postData),
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({
+      post:postText,
+      replies:""
+    })
   };
 
   fetch('http://localhost:3000/blogpost', options)
@@ -54,10 +51,3 @@ function submitPost(e){
     .then(appendfeeds)
     .catch(console.warn)
 };
-
-const newPost=document.getElementById('originalPosts');
-function appendfeeds(post){
-    const newLi = document.createElement('li');
-    newLi.textContent = `${bP.post}`
-    newPost.append(newLi);
-  };
