@@ -62,3 +62,5 @@ app.post("/negreaction", (req, res) => {
     const newReaction = timeline[+replyId-1];
     res.status(201).send(newReaction);
 });
+
+module.exports = app
