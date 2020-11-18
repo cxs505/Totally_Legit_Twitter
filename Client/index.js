@@ -10,6 +10,7 @@ let reactionId;
 function postOriginal (event) {     // This function is called when we post an original post
   event.preventDefault();
   const postText=event.target.newPost.value;
+  if (postText.length>1)
 
   const options = {
     method: 'POST',
@@ -30,20 +31,24 @@ function postOriginal (event) {     // This function is called when we post an o
 function appendPostToFeed (newOriginalPost) {
   const newPostLi = document.createElement('li');
   newPostLi.setAttribute("id", `postLi${newOriginalPost.id}`);
+  newPostLi.setAttribute("class","post-on-thread")
+  // newReplyLi.setAttribute('class','reply-div')
   newPostLi.textContent = `${newOriginalPost.post}`;
-  originalPostsUl.append(newPostLi)
+  originalPostsUl.append(newPostLi);
   appendReactions(newOriginalPost);
   appendReplyForm(newOriginalPost);
 };
 
 function appendReactions (newOriginalPost) {
   const post = document.getElementById(`postLi${newOriginalPost.id}`);
+  
   reactionId = newOriginalPost.id;
     const reactionContainer = document.createElement("div");
   
       const positiveReaction = document.createElement("input");
       positiveReaction.setAttribute("id", `posReact${newOriginalPost.id}`);
       positiveReaction.setAttribute("type", "button");
+      positiveReaction.setAttribute("class","positiveBtn")
       positiveReaction.addEventListener('click', posReaction);
       positiveReaction.setAttribute("value", `${thumbsUp} ${newOriginalPost.thumbsUp}`);
 
@@ -55,6 +60,7 @@ function appendReactions (newOriginalPost) {
 
       const negativeReaction = document.createElement("input");
       negativeReaction.setAttribute("id", `negReact${newOriginalPost.id}`);
+      negativeReaction.setAttribute("class", "negativeBtn")
       negativeReaction.setAttribute("type", "button");
       negativeReaction.addEventListener('click', negReaction);
       negativeReaction.setAttribute("value", `${thumbsDown} ${newOriginalPost.thumbsDown}`);
@@ -138,6 +144,7 @@ function updateReaction (newReactions) {
 
 function appendReplyForm (newOriginalPost) {
   const newReplyThread = document.createElement('ul');
+
   newReplyThread.setAttribute("id", `newReplyThread${newOriginalPost.id}`);
 
     const formContainer = document.createElement('li');
@@ -147,6 +154,7 @@ function appendReplyForm (newOriginalPost) {
 
         const replyTextBox = document.createElement('textarea');
         replyTextBox.setAttribute("id", `${newOriginalPost.id}`);
+        replyTextBox.setAttribute('class',"reply-text-box")
         replyTextBox.setAttribute("name", "newReply");
 
         const replyButton = document.createElement('input');
@@ -182,25 +190,12 @@ function postReply (event) {     // This function is called when we post a reply
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-<<<<<<< HEAD
-const myForm=document.getElementById('newPostForm');
-
-const emojiButton = document.createElement('button');
-emojiButton.addEventListener('click', postOriginal);
-
-function EmojiCount (){
-  if 
-}
-let heartCount=0;
-let lyingCount=0;
-let shockedCount=0;
-=======
 function appendReply (newReply) {
   const replyThread = document.getElementById(`postLi${newReply.id}`);              // Either this line or the one below
   // const replyThread = document.getElementById(`newReplyThread${newReply.id}`);
   const newReplyLi = document.createElement('li');
+  newReplyLi.setAttribute('class','reply-div')
   newReplyLi.textContent = `${newReply.replies[newReply.replies.length-1]}`;
   replyThread.append(newReplyLi);
 };
 
->>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498

@@ -35,6 +35,12 @@ describe("Api endpoints", () =>{
             .expect(404, done);
     });
 
-    
+    it("reponds to post", done => {
+        request(api)
+            .post("/blogpost")
+            .send(testPost)
+            .expect(testPost)
+            .expect(201, done)
+    })
 
 })

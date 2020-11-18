@@ -25,14 +25,7 @@ app.get('/', (req, res) => {
 app.get("/feed", (req, res) => {
     res.send({timeline})
 });
-<<<<<<< HEAD
-app.get('/emojireactions',(req,res)=>{
-    res.send({emojiCodes})
-})
-
-=======
 // New posts will be resolved here. We create a new object, initialize it and set its new id and post value. Then we push it to the timeline.
->>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498
 app.post("/newpost", (req, res) => {
     const newId = timeline.length+1;
     const originalPost = req.body.post;

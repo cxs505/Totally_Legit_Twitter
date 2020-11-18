@@ -1,19 +1,45 @@
 * {
     text-align: center;
     /* border: 1px solid red;
-    box-sizing: border-box; */
+    box-sizing: border-box;   */
 }
 
 :root {
     --headerFooterBackground : lightblue;
     --headerFooterText : white;
 }
+body{
+    background-color: blue;
+}
+#formContainer {
+    /* min-height: 20vw; */
+    width: 100%;
+    background-color: lightyellow;
+    position: relative;
+    height: 50px;
 
+
+}
+
+#newPost{
+    width: 50%;
+    position: absolute;
+    right:200px;
+    top: 10px
+    
+
+}
+#submitID{
+    position: absolute;
+    right: 155px;
+    top:10px;
+
+}
 
 nav {
     align-items:center; 
-    position: sticky;
-    top: auto;
+    position: fixed;
+    top: 0;
     background-color: var(--headerFooterBackground);
     color: var(--headerFooterText)
 }
@@ -24,10 +50,6 @@ body {
     justify-content: center;
 }
 
-#formContainer {
-    /* min-height: 20vw; */
-    background-color: lightyellow;
-}
 
 /* #timeline {
     min-height: 80vw;
@@ -37,20 +59,13 @@ body {
     background-color: lightgray;
 }
 
-#originalPosts ul {
-    background-color: lightpink;
-}
-
 li {
     list-style: none;
     margin: 10px;
 }
 
-<<<<<<< HEAD
-=======
 footer {
     position: fixed;
-    left: 0;
     bottom: 0;
     width: 100%;
     background-color: var(--headerFooterBackground);
@@ -71,7 +86,6 @@ footer ul li {
 footer ul li a {
     text-decoration: none;
 }
->>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498
 
 .header-nav {
     display: flex;
@@ -84,8 +98,7 @@ footer ul li a {
 }
   
 .header-nav ul li {
-    list-style: none;
-    padding-right: 20px;
+    padding-right: 5px;
 }
   
 #sign-in {
@@ -104,33 +117,32 @@ footer ul li a {
     margin-right: auto 
 
     
-<<<<<<< HEAD
-}
-footer {
-    display: block;
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--headerFooterBackground);
-    color: var(--headerFooterText);
-    text-align: center;
-    justify-content: space-between;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-    
-footer ul li {
-    
-    display:inline;
-    list-style: none;
-    padding-right: 20px;
-}
-  
-footer ul li a {
-    text-decoration: none;
-}
-=======
 } */
 
->>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498
+.negativeBtn{
+    background-color: red;
+}
+
+.positiveBtn {
+
+    background-color: green;
+}
+
+.reply-div{
+    border: 1px solid purple;
+}
+
+.reply-text-box{
+    width: 50%;
+    height: 25px;
+}
+#originalPosts ul {
+    background-color: black;
+    width: 100%
+
+}
+
+.post-on-thread{
+    border: 1px solid purple;
+    
+}
