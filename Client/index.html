@@ -27,9 +27,12 @@
     <main>
         <div id="formContainer">
             <form id="newPostForm">
-                <label for="newPost"></label>
+                <label for="newPost">What is on your mind?</label><br>
                 <textarea id="newPost" name="newPost"></textarea>
-                <input type="submit" value="Post" id='submitID'>
+                <div id="newPostBtnContainer">
+                    <input type="submit" value="Post" id='newPostButton' name="userAction">
+                    <input type="submit" value="Giphy" id='giphyButton' name="userAction">
+                </div>
             </form>
         </div>
         <div id="timeline">
