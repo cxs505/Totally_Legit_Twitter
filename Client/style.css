@@ -8,6 +8,8 @@
     --headerFooterBackground : lightblue;
     --headerFooterText : white;
 }
+
+/*  BACKGROUND */
 body{
     background-color: blue;
 }
@@ -15,26 +17,33 @@ body{
     /* min-height: 20vw; */
     width: 100%;
     background-color: lightyellow;
-    position: relative;
-    height: 50px;
-
+    position: fixed;
+    height: 100px;
 
 }
 
-#newPost{
-    width: 50%;
-    position: absolute;
-    right:200px;
-    top: 10px
+/* HEADER */
+
+@media (min-width: 600px) {
+    #newPostBtnContainer{
+        position: absolute;
+        right:300px;
+        top: 65px;
+        justify-content: space-around;
+        
+    }
+    #newPost{
+        width: 50%;
+        position: absolute;
+        right:180px;
+        top: 20px
+        
     
-
+    }
 }
-#submitID{
-    position: absolute;
-    right: 155px;
-    top:10px;
 
-}
+
+
 
 nav {
     align-items:center; 
@@ -44,11 +53,7 @@ nav {
     color: var(--headerFooterText)
 }
 
-body {
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-}
+
 
 
 /* #timeline {
@@ -126,6 +131,7 @@ footer ul li a {
 .positiveBtn {
 
     background-color: green;
+    justify-content: space-between;
 }
 
 .reply-div{
@@ -144,5 +150,14 @@ footer ul li a {
 
 .post-on-thread{
     border: 1px solid purple;
+    justify-content: space-between;
     
+}
+
+
+
+.reaction-container{
+    border: 4px solid gold;
+    width: 20px;
+
 }

@@ -67,7 +67,6 @@ function appendGiffToFeed (newGiff) {
 function postOriginal (event) {     // This function is called when we post an original post
   event.preventDefault();
   const postText=event.target.newPost.value;
-  if (postText.length>1)
 
   const options = {
     method: 'POST',
@@ -101,6 +100,7 @@ function appendReactions (newOriginalPost) {
   
   reactionId = newOriginalPost.id;
     const reactionContainer = document.createElement("div");
+    reactionContainer.setAttribute("class","reaction-container")
   
       const positiveReaction = document.createElement("input");
       positiveReaction.setAttribute("id", `posReact${newOriginalPost.id}`);

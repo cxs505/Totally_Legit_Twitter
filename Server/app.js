@@ -12,12 +12,6 @@ app.listen(port, () => console.log(`Server started! Visit http://localhost:${por
 //data from the posts will be stored here
 const timeline = [];
 
-const emojiCodes=[
-    {image: 'red heart',code: '&#x2764'},
-    {image: 'lying face', code: '&#x1F925'},
-    {image: 'shocked faced', code: '&#x1F627'}
-]
-
 app.get('/', (req, res) => {
     res.send("Nothing to see here, move along!")
 });

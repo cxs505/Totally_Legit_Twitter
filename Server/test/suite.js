@@ -1,6 +1,20 @@
 const request = require("supertest")
 const app = require("../app.js")
+const index=require("../../client/index.js")
 const port = process.env.PORT || 3001
+
+describe('fetchGif', () => {
+    let userAction = index.__get__("fetchGif");
+
+    it('should be a function', () => {
+        expect(fetchGif).to.be.a('function');
+    });
+
+    it('should submit new post', () => {
+        expect(fetchGif(hi)).to.equal();
+    })
+});
+
 
 describe("Api endpoints", () =>{
     let api = app.listen(port, () => console.log(`starting test server on port ${port}`))
