@@ -13,7 +13,7 @@ Our first group project with the goal to create a community journaling website.
     ```
 - After that you need to start the server:
     ```bash
-    npm run start
+    npm start
     ```
 - Finally open the index.html with your browser. Have Hun!
 

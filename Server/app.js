@@ -15,10 +15,12 @@ const timeline = [];
 app.get('/', (req, res) => {
     res.send("Nothing to see here, move along!")
 });
-// Only accessed manualy 
+
+// Only accessed manualy
 app.get("/feed", (req, res) => {
     res.send({timeline})
 });
+
 // New posts will be resolved here. We create a new object, initialize it and set its new id and post value. Then we push it to the timeline.
 app.post("/newpost", (req, res) => {
     const newId = timeline.length+1;
@@ -27,6 +29,7 @@ app.post("/newpost", (req, res) => {
     timeline.push(newPost);
     res.status(201).send(newPost);
 });
+
 // New replies will be resolved here. We search for the post based on the id, and append the reply to the array of replies
 app.post("/newreply", (req, res) => {
     const replyId = req.body.id;
@@ -35,6 +38,7 @@ app.post("/newreply", (req, res) => {
     const newReply = timeline[+replyId-1];
     res.status(201).send(newReply);
 });
+
 // New positive reactions will be resolved here.We find the current value and increase it by 1. Then we send the whole object back
 app.post("/posreaction", (req, res) => {
     const replyId = req.body.id;
@@ -42,6 +46,7 @@ app.post("/posreaction", (req, res) => {
     const newReaction = timeline[+replyId-1];
     res.status(201).send(newReaction);
 });
+
 // New funny reactions will be resolved here. Same functionality as before
 app.post("/funreaction", (req, res) => {
     const replyId = req.body.id;
@@ -49,6 +54,7 @@ app.post("/funreaction", (req, res) => {
     const newReaction = timeline[+replyId-1];
     res.status(201).send(newReaction);
 });
+
 // New negative reactions will be resolved here. Same functionality as before
 app.post("/negreaction", (req, res) => {
     const replyId = req.body.id;
@@ -56,4 +62,3 @@ app.post("/negreaction", (req, res) => {
     const newReaction = timeline[+replyId-1];
     res.status(201).send(newReaction);
 });
-
