@@ -34,11 +34,11 @@ body {
 } */
 
 #originalPosts {
-    background-color: darkred;
+    background-color: lightgray;
 }
 
 #originalPosts ul {
-    background-color: red;
+    background-color: lightpink;
 }
 
 li {
@@ -46,6 +46,32 @@ li {
     margin: 10px;
 }
 
+<<<<<<< HEAD
+=======
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--headerFooterBackground);
+    color: var(--headerFooterText);
+    text-align: center;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+    
+footer ul li {
+    
+    display:inline;
+    list-style: none;
+    padding-right: 20px;
+}
+  
+footer ul li a {
+    text-decoration: none;
+}
+>>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498
 
 .header-nav {
     display: flex;
@@ -70,7 +96,7 @@ li {
     padding: 5px 10px;
     border-radius: 3%;
 }
-main {
+/* main {
     width :75%;
     position: relative;
     display: block;
@@ -78,6 +104,7 @@ main {
     margin-right: auto 
 
     
+<<<<<<< HEAD
 }
 footer {
     display: block;
@@ -103,3 +130,7 @@ footer ul li {
 footer ul li a {
     text-decoration: none;
 }
+=======
+} */
+
+>>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498

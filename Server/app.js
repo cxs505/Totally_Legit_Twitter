@@ -7,14 +7,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.listen(port, () => console.log(`Server started! Visit http://localhost:${port} !`));
+app.listen(port, () => console.log(`Server started! Visit http://localhost:${port}`));
 
 //data from the posts will be stored here
-const timeline = [
-    {id: 1, post: "original post 1.", replies: ["1st reply to post 1", "2nd reply to post 1"]},
-    {id: 2, post: "original post 2", replies: []},
-    {id: 3, post: "original post 3.", replies: ["1st reply to post 3", "2nd reply to post 3",]},
-];
+const timeline = [];
 
 const emojiCodes=[
     {image: 'red heart',code: '&#x2764'},
@@ -23,28 +19,54 @@ const emojiCodes=[
 ]
 
 app.get('/', (req, res) => {
-    res.send("Hello World!")
+    res.send("Nothing to see here, move along!")
 });
-
-app.get("/blogpost", (req, res) => {
+// Only accessed manualy 
+app.get("/feed", (req, res) => {
     res.send({timeline})
 });
+<<<<<<< HEAD
 app.get('/emojireactions',(req,res)=>{
     res.send({emojiCodes})
 })
 
+=======
+// New posts will be resolved here. We create a new object, initialize it and set its new id and post value. Then we push it to the timeline.
+>>>>>>> b706db4272160f28ff376c3f9e05ebfa03e2f498
 app.post("/newpost", (req, res) => {
-    const originalPost = req.body.post;
-    const postReplies = req.body.replies;
     const newId = timeline.length+1;
-    const newPost = {id: newId, post: originalPost, replies:postReplies};
+    const originalPost = req.body.post;
+    const newPost = {id: newId, post: originalPost, thumbsUp:0, hilarious:0, thumbsDown:0, replies:[]};
     timeline.push(newPost);
-    res.status(201).send(newPost)
+    res.status(201).send(newPost);
 });
-
+// New replies will be resolved here. We search for the post based on the id, and append the reply to the array of replies
 app.post("/newreply", (req, res) => {
     const replyId = req.body.id;
-    const replyText = req.body.replies; //check postdata to match
+    const replyText = req.body.replies;
     timeline[+replyId-1].replies.push(replyText);
-    res.status(201);    //we need to send something back, but can't find what to send
+    const newReply = timeline[+replyId-1];
+    res.status(201).send(newReply);
 });
+// New positive reactions will be resolved here.We find the current value and increase it by 1. Then we send the whole object back
+app.post("/posreaction", (req, res) => {
+    const replyId = req.body.id;
+    timeline[+replyId-1].thumbsUp = timeline[+replyId-1].thumbsUp +1;
+    const newReaction = timeline[+replyId-1];
+    res.status(201).send(newReaction);
+});
+// New funny reactions will be resolved here. Same functionality as before
+app.post("/funreaction", (req, res) => {
+    const replyId = req.body.id;
+    timeline[+replyId-1].hilarious = timeline[+replyId-1].hilarious +1;
+    const newReaction = timeline[+replyId-1];
+    res.status(201).send(newReaction);
+});
+// New negative reactions will be resolved here. Same functionality as before
+app.post("/negreaction", (req, res) => {
+    const replyId = req.body.id;
+    timeline[+replyId-1].thumbsDown = timeline[+replyId-1].thumbsDown +1;
+    const newReaction = timeline[+replyId-1];
+    res.status(201).send(newReaction);
+});
+
