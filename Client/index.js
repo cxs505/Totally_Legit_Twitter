@@ -7,18 +7,18 @@ let hilarious = "🤣";
 let thumbsDown = "👎";
 let reactionId;
 
-function userAction (event) {
+function userAction (event) {     // Checks which button the user pressed and if the text is less than 150 characters
   event.preventDefault();
   if (event.submitter.value == "Post" && event.target.newPost.value.length < 150) {
     postOriginal(event);
   } else if (event.submitter.value == "Giphy" && event.target.newPost.value.length < 150) {
     fetchGif(event);
   } else {
-    console.warn("Please type less that 150 characters")
+    alert("Please keep in mind that your posts are limited to a maximum of 150 characters");
   };
 };
 
-function fetchGif (event) {
+function fetchGif (event) {     // We fetch a single random giff using as search critiria what the user wrote in the text area
   event.preventDefault();
   const postText=event.target.newPost.value;
   let giphyApiKey = "8x0VRgzjaGPEBptzrtAvSOeWVu6Lxqrb";
@@ -30,8 +30,7 @@ function fetchGif (event) {
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function postGiff(giffObject) {
-  console.log(giffObject)
+function postGiff(giffObject) {     // We get the url of the giff and send it to our server to be stored as a new entry
   const giffUrl = giffObject.data.images.fixed_height.url
 
   const options = {
@@ -50,7 +49,7 @@ function postGiff(giffObject) {
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function appendGiffToFeed (newGiff) {
+function appendGiffToFeed (newGiff) {     // We display the random giff to the timeline and add the reactions and reply elements
   const newPostLi = document.createElement('li');
   newPostLi.setAttribute("id", `postLi${newGiff.id}`);
 
@@ -64,7 +63,7 @@ function appendGiffToFeed (newGiff) {
   appendReplyForm(newGiff);
 };
 
-function postOriginal (event) {     // This function is called when we post an original post
+function postOriginal (event) {      // We take the text written in the text area by the user and send it the server to be stored as a new entry
   event.preventDefault();
   const postText=event.target.newPost.value;
 
@@ -84,7 +83,7 @@ function postOriginal (event) {     // This function is called when we post an o
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function appendPostToFeed (newOriginalPost) {
+function appendPostToFeed (newOriginalPost) {     // We diplay the user entry to the timeline and add the reactions and reply elements
   const newPostLi = document.createElement('li');
   newPostLi.setAttribute("id", `postLi${newOriginalPost.id}`);
   newPostLi.setAttribute("class","post-on-thread")
@@ -95,7 +94,7 @@ function appendPostToFeed (newOriginalPost) {
   appendReplyForm(newOriginalPost);
 };
 
-function appendReactions (newOriginalPost) {
+function appendReactions (newOriginalPost) {      // This function is called for every new original entry (both posts and giffs)
   const post = document.getElementById(`postLi${newOriginalPost.id}`);
   
   reactionId = newOriginalPost.id;
@@ -128,7 +127,7 @@ function appendReactions (newOriginalPost) {
   post.append(reactionContainer);
 };
 
-function posReaction (event) {
+function posReaction (event) {      // We send a request to the server to increase the number of positive reactions to that specific post
   event.preventDefault();
   const postId = reactionId;
 
@@ -148,7 +147,7 @@ function posReaction (event) {
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function funReaction (event) {
+function funReaction (event) {      // We send a request to the server to increase the number of funny reactions to that specific post
   event.preventDefault();
   const postId = reactionId;
 
@@ -168,7 +167,7 @@ function funReaction (event) {
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function negReaction (event) {
+function negReaction (event) {      // We send a request to the server to increase the number of negative reactions to that specific post
   event.preventDefault();
   const postId = reactionId;
 
@@ -188,7 +187,7 @@ function negReaction (event) {
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function updateReaction (newReactions) {
+function updateReaction (newReactions) {      // We fetch the latest value of each reaction and update the number displayed
   const newPosReact = document.getElementById(`posReact${newReactions.id}`)
   newPosReact.setAttribute("value",`${thumbsUp} ${newReactions.thumbsUp}`)
   
@@ -199,7 +198,7 @@ function updateReaction (newReactions) {
   newNegReact.setAttribute("value",`${thumbsDown} ${newReactions.thumbsDown}`)
 };
 
-function appendReplyForm (newOriginalPost) {
+function appendReplyForm (newOriginalPost) {      // This function is called for every new original entry (both posts and giffs)
   const newReplyThread = document.createElement('ul');
 
   newReplyThread.setAttribute("id", `newReplyThread${newOriginalPost.id}`);
@@ -225,7 +224,7 @@ function appendReplyForm (newOriginalPost) {
   originalPostsUl.append(newReplyThread)
 };
 
-function postReply (event) {     // This function is called when we post a reply
+function postReply (event) {     // We take the text written in the reply text area by the user and send it the server to be stored
   event.preventDefault();
   const replyId = event.target.newReply.id;
   const replyText = event.target.newReply.value;
@@ -247,7 +246,7 @@ function postReply (event) {     // This function is called when we post a reply
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function appendReply (newReply) {
+function appendReply (newReply) {     // We take the text written in the reply text area and append it to the list of replies of that post
   const replyThread = document.getElementById(`postLi${newReply.id}`);              // Either this line or the one below
   // const replyThread = document.getElementById(`newReplyThread${newReply.id}`);
   const newReplyLi = document.createElement('li');
