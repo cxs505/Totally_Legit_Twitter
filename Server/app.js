@@ -35,10 +35,25 @@ app.post("/newreply", (req, res) => {
     const newReply = timeline[+replyId-1];
     res.status(201).send(newReply);
 });
-// New positive reaction will be resolved here. Under construction.
+// New positive reactions will be resolved here.We find the current value and increase it by 1. Then we send the whole object back
 app.post("/posreaction", (req, res) => {
     const replyId = req.body.id;
     timeline[+replyId-1].thumbsUp = timeline[+replyId-1].thumbsUp +1;
     const newReaction = timeline[+replyId-1];
     res.status(201).send(newReaction);
 });
+// New funny reactions will be resolved here. Same functionality as before
+app.post("/funreaction", (req, res) => {
+    const replyId = req.body.id;
+    timeline[+replyId-1].hilarious = timeline[+replyId-1].hilarious +1;
+    const newReaction = timeline[+replyId-1];
+    res.status(201).send(newReaction);
+});
+// New negative reactions will be resolved here. Same functionality as before
+app.post("/negreaction", (req, res) => {
+    const replyId = req.body.id;
+    timeline[+replyId-1].thumbsDown = timeline[+replyId-1].thumbsDown +1;
+    const newReaction = timeline[+replyId-1];
+    res.status(201).send(newReaction);
+});
+

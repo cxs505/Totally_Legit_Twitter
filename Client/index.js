@@ -5,6 +5,7 @@ newPostForm.addEventListener('submit', postOriginal);
 let thumbsUp = "👍";
 let hilarious = "🤣";
 let thumbsDown = "👎";
+let reactionId;
 
 function postOriginal (event) {     // This function is called when we post an original post
   event.preventDefault();
@@ -37,21 +38,25 @@ function appendPostToFeed (newOriginalPost) {
 
 function appendReactions (newOriginalPost) {
   const post = document.getElementById(`postLi${newOriginalPost.id}`);
+  reactionId = newOriginalPost.id;
     const reactionContainer = document.createElement("div");
   
       const positiveReaction = document.createElement("input");
+      positiveReaction.setAttribute("id", `posReact${newOriginalPost.id}`);
       positiveReaction.setAttribute("type", "button");
-      // positiveReaction.addEventListener('click', posReaction);
+      positiveReaction.addEventListener('click', posReaction);
       positiveReaction.setAttribute("value", `${thumbsUp} ${newOriginalPost.thumbsUp}`);
 
       const funnyReaction = document.createElement("input");
+      funnyReaction.setAttribute("id", `funReact${newOriginalPost.id}`);
       funnyReaction.setAttribute("type", "button");
-      // funnyReaction.addEventListener('click', funReaction);
+      funnyReaction.addEventListener('click', funReaction);
       funnyReaction.setAttribute("value", `${hilarious} ${newOriginalPost.hilarious}`);
 
       const negativeReaction = document.createElement("input");
-      // negativeReaction.addEventListener('click', negReaction);
+      negativeReaction.setAttribute("id", `negReact${newOriginalPost.id}`);
       negativeReaction.setAttribute("type", "button");
+      negativeReaction.addEventListener('click', negReaction);
       negativeReaction.setAttribute("value", `${thumbsDown} ${newOriginalPost.thumbsDown}`);
 
     reactionContainer.append(positiveReaction);
@@ -60,28 +65,76 @@ function appendReactions (newOriginalPost) {
   post.append(reactionContainer);
 };
 
-// function posReaction (event) {
-//   event.preventDefault();
-//   console.log(event);
-//   console.log(event.target);
-//   const postId = newOriginalPost.id;
-//   console.log(postId);
+function posReaction (event) {
+  event.preventDefault();
+  const postId = reactionId;
 
-//   const options = {
-//     method: 'POST',
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({
-//       id:postId
-//     })
-//   };
+  const options = {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id:postId
+    })
+  };
 
-//   fetch('http://localhost:3000/posreaction', options)
-//     .then(response => response.json())
-//     // .then(appendReply)
-//     .catch(error => console.warn(`Oh no: ${error}`))
-// };
+  fetch('http://localhost:3000/posreaction', options)
+    .then(response => response.json())
+    .then(updateReaction)
+    .catch(error => console.warn(`Oh no: ${error}`))
+};
+
+function funReaction (event) {
+  event.preventDefault();
+  const postId = reactionId;
+
+  const options = {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id:postId
+    })
+  };
+
+  fetch('http://localhost:3000/funreaction', options)
+    .then(response => response.json())
+    .then(updateReaction)
+    .catch(error => console.warn(`Oh no: ${error}`))
+};
+
+function negReaction (event) {
+  event.preventDefault();
+  const postId = reactionId;
+
+  const options = {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id:postId
+    })
+  };
+
+  fetch('http://localhost:3000/negreaction', options)
+    .then(response => response.json())
+    .then(updateReaction)
+    .catch(error => console.warn(`Oh no: ${error}`))
+};
+
+function updateReaction (newReactions) {
+  const newPosReact = document.getElementById(`posReact${newReactions.id}`)
+  newPosReact.setAttribute("value",`${thumbsUp} ${newReactions.thumbsUp}`)
+  
+  const newFunReact = document.getElementById(`funReact${newReactions.id}`)
+  newFunReact.setAttribute("value",`${hilarious} ${newReactions.hilarious}`)
+  
+  const newNegReact = document.getElementById(`negReact${newReactions.id}`)
+  newNegReact.setAttribute("value",`${thumbsDown} ${newReactions.thumbsDown}`)
+}
 
 function appendReplyForm (newOriginalPost) {
   const newReplyThread = document.createElement('ul');
@@ -130,10 +183,10 @@ function postReply (event) {     // This function is called when we post a reply
 };
 
 function appendReply (newReply) {
-  // const replyThread = document.getElementById(`postLi${newReply.id}`);              // Either this line or the one below
-  const replyThread = document.getElementById(`newReplyThread${newReply.id}`);        // This one is better for what we need
+  const replyThread = document.getElementById(`postLi${newReply.id}`);              // Either this line or the one below
+  // const replyThread = document.getElementById(`newReplyThread${newReply.id}`);
   const newReplyLi = document.createElement('li');
   newReplyLi.textContent = `${newReply.replies[newReply.replies.length-1]}`;
-  replyThread.append(newReplyLi, );
+  replyThread.append(newReplyLi);
 };
 
