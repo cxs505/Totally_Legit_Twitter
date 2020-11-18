@@ -1,11 +1,68 @@
 const originalPostsUl = document.getElementById('originalPosts');
 const newPostForm = document.getElementById('newPostForm');
-newPostForm.addEventListener('submit', postOriginal);
+newPostForm.addEventListener('submit', userAction);
 
 let thumbsUp = "👍";
 let hilarious = "🤣";
 let thumbsDown = "👎";
 let reactionId;
+
+function userAction (event) {
+  event.preventDefault();
+  if (event.submitter.value == "Post" && event.target.newPost.value.length < 150) {
+    postOriginal(event);
+  } else if (event.submitter.value == "Giphy" && event.target.newPost.value.length < 150) {
+    fetchGif(event);
+  } else {
+    console.warn("Please type less that 150 characters")
+  };
+};
+
+function fetchGif (event) {
+  event.preventDefault();
+  const postText=event.target.newPost.value;
+  let giphyApiKey = "8x0VRgzjaGPEBptzrtAvSOeWVu6Lxqrb";
+  let url =`https://api.giphy.com/v1/gifs/random?tag=${postText}&api_key=${giphyApiKey}&limit=1"`
+
+  fetch(url)
+    .then(response => response.json())
+    .then(postGiff)
+    .catch(error => console.warn(`Oh no: ${error}`))
+};
+
+function postGiff(giffObject) {
+  console.log(giffObject)
+  const giffUrl = giffObject.data.images.fixed_height.url
+
+  const options = {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      post:giffUrl
+    })
+  };
+
+  fetch('http://localhost:3000/newpost', options)
+    .then(response => response.json())
+    .then(appendGiffToFeed)
+    .catch(error => console.warn(`Oh no: ${error}`))
+};
+
+function appendGiffToFeed (newGiff) {
+  const newPostLi = document.createElement('li');
+  newPostLi.setAttribute("id", `postLi${newGiff.id}`);
+
+  const newGiffImg = document.createElement('img');
+  newGiffImg.setAttribute("src", `${newGiff.post}`);
+
+  newPostLi.append(newGiffImg)
+  originalPostsUl.append(newPostLi)
+  
+  appendReactions(newGiff);
+  appendReplyForm(newGiff);
+};
 
 function postOriginal (event) {     // This function is called when we post an original post
   event.preventDefault();
@@ -140,7 +197,7 @@ function updateReaction (newReactions) {
   
   const newNegReact = document.getElementById(`negReact${newReactions.id}`)
   newNegReact.setAttribute("value",`${thumbsDown} ${newReactions.thumbsDown}`)
-}
+};
 
 function appendReplyForm (newOriginalPost) {
   const newReplyThread = document.createElement('ul');
@@ -198,4 +255,3 @@ function appendReply (newReply) {
   newReplyLi.textContent = `${newReply.replies[newReply.replies.length-1]}`;
   replyThread.append(newReplyLi);
 };
-
