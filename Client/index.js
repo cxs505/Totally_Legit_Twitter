@@ -125,14 +125,13 @@ function postReply (event) {     // This function is called when we post a reply
 
   fetch('http://localhost:3000/newreply', options)
     .then(response => response.json())
-    // .then(response => console.log(response.replyText))
     .then(appendReply)
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
 function appendReply (newReply) {
-  // const replyThread = document.getElementById(`postLi${newReply.id}`);              //Either this line or the one below
-  const replyThread = document.getElementById(`newReplyThread${newReply.id}`);
+  // const replyThread = document.getElementById(`postLi${newReply.id}`);              // Either this line or the one below
+  const replyThread = document.getElementById(`newReplyThread${newReply.id}`);        // This one is better for what we need
   const newReplyLi = document.createElement('li');
   newReplyLi.textContent = `${newReply.replies[newReply.replies.length-1]}`;
   replyThread.append(newReplyLi, );

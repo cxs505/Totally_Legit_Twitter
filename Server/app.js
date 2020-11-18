@@ -10,17 +10,16 @@ app.use(cors());
 app.listen(port, () => console.log(`Server started! Visit http://localhost:${port}`));
 
 //data from the posts will be stored here
-
 const timeline = [];
 
 app.get('/', (req, res) => {
-    res.send("Hello World!")
+    res.send("Nothing to see here, move along!")
 });
-
+// Only accessed manualy 
 app.get("/feed", (req, res) => {
     res.send({timeline})
 });
-
+// New posts will be resolved here. We create a new object, initialize it and set its new id and post value. Then we push it to the timeline.
 app.post("/newpost", (req, res) => {
     const newId = timeline.length+1;
     const originalPost = req.body.post;
@@ -28,7 +27,7 @@ app.post("/newpost", (req, res) => {
     timeline.push(newPost);
     res.status(201).send(newPost);
 });
-
+// New replies will be resolved here. We search for the post based on the id, and append the reply to the array of replies
 app.post("/newreply", (req, res) => {
     const replyId = req.body.id;
     const replyText = req.body.replies;
@@ -36,12 +35,10 @@ app.post("/newreply", (req, res) => {
     const newReply = timeline[+replyId-1];
     res.status(201).send(newReply);
 });
-
+// New positive reaction will be resolved here. Under construction.
 app.post("/posreaction", (req, res) => {
     const replyId = req.body.id;
-    console.log(timeline[+replyId-1].thumbsUp);
     timeline[+replyId-1].thumbsUp = timeline[+replyId-1].thumbsUp +1;
-    console.log(timeline[+replyId-1].thumbsUp);
     const newReaction = timeline[+replyId-1];
     res.status(201).send(newReaction);
 });
