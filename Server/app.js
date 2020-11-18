@@ -57,3 +57,5 @@ app.post("/negreaction", (req, res) => {
     res.status(201).send(newReaction);
 });
 
+module.exports = app
+
