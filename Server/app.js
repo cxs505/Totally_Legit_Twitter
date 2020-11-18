@@ -16,6 +16,12 @@ const timeline = [
     {id: 3, post: "original post 3.", replies: ["1st reply to post 3", "2nd reply to post 3",]},
 ];
 
+const emojiCodes=[
+    {image: 'red heart',code: '&#x2764'},
+    {image: 'lying face', code: '&#x1F925'},
+    {image: 'shocked faced', code: '&#x1F627'}
+]
+
 app.get('/', (req, res) => {
     res.send("Hello World!")
 });
@@ -23,6 +29,9 @@ app.get('/', (req, res) => {
 app.get("/blogpost", (req, res) => {
     res.send({timeline})
 });
+app.get('/emojireactions',(req,res)=>{
+    res.send({emojiCodes})
+})
 
 app.post("/newpost", (req, res) => {
     const originalPost = req.body.post;

@@ -47,30 +47,6 @@ li {
 }
 
 
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--headerFooterBackground);
-    color: var(--headerFooterText);
-    text-align: center;
-    justify-content: space-between;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-    
-footer ul li {
-    
-    display:inline;
-    list-style: none;
-    padding-right: 20px;
-}
-  
-footer ul li a {
-    text-decoration: none;
-}
-
 .header-nav {
     display: flex;
     justify-content: space-between;
@@ -97,7 +73,33 @@ footer ul li a {
 main {
     width :75%;
     position: relative;
-    top: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+
     
 }
-
+footer {
+    display: block;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--headerFooterBackground);
+    color: var(--headerFooterText);
+    text-align: center;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+    
+footer ul li {
+    
+    display:inline;
+    list-style: none;
+    padding-right: 20px;
+}
+  
+footer ul li a {
+    text-decoration: none;
+}

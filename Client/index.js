@@ -98,3 +98,15 @@ function postReply(event) {     // This function is called when we post a reply
     .then(location.reload())
     .catch(error => console.warn(`Oh no: ${error}`))
 };
+
+const myForm=document.getElementById('newPostForm');
+
+const emojiButton = document.createElement('button');
+emojiButton.addEventListener('click', postOriginal);
+
+function EmojiCount (){
+  if 
+}
+let heartCount=0;
+let lyingCount=0;
+let shockedCount=0;
