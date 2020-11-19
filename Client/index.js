@@ -5,7 +5,6 @@ newPostForm.addEventListener('submit', userAction);
 let thumbsUp = "👍";
 let hilarious = "🤣";
 let thumbsDown = "👎";
-let reactionId;
 
 function userAction (event) {     // Checks which button the user pressed and if the text is less than 150 characters
   event.preventDefault();
@@ -52,13 +51,12 @@ function postGiff(giffObject) {     // We get the url of the giff and send it to
 function appendGiffToFeed (newGiff) {     // We display the random giff to the timeline and add the reactions and reply elements
   const newPostLi = document.createElement('li');
   newPostLi.setAttribute("id", `postLi${newGiff.id}`);
-
+  newPostLi.setAttribute("class","post-on-thread")
+  
   const newGiffImg = document.createElement('img');
   newGiffImg.setAttribute("src", `${newGiff.post}`);
-
   newPostLi.append(newGiffImg)
   originalPostsUl.append(newPostLi)
-  
   appendReactions(newGiff);
   appendReplyForm(newGiff);
 };
@@ -83,43 +81,45 @@ function postOriginal (event) {      // We take the text written in the text are
     .catch(error => console.warn(`Oh no: ${error}`))
 };
 
-function appendPostToFeed (newOriginalPost) {     // We diplay the user entry to the timeline and add the reactions and reply elements
+function appendPostToFeed (newPost) {     // We diplay the user entry to the timeline and add the reactions and reply elements
   const newPostLi = document.createElement('li');
-  newPostLi.setAttribute("id", `postLi${newOriginalPost.id}`);
+  newPostLi.setAttribute("id", `postLi${newPost.id}`);
   newPostLi.setAttribute("class","post-on-thread")
-  // newReplyLi.setAttribute('class','reply-div')
-  newPostLi.textContent = `${newOriginalPost.post}`;
+  
+  const newPostPar = document.createElement('p');
+  newPostPar.textContent = `${newPost.post}`;
+  newPostLi.append(newPostPar)
   originalPostsUl.append(newPostLi);
-  appendReactions(newOriginalPost);
-  appendReplyForm(newOriginalPost);
+  appendReactions(newPost);
+  appendReplyForm(newPost);
 };
 
-function appendReactions (newOriginalPost) {      // This function is called for every new original entry (both posts and giffs)
-  const post = document.getElementById(`postLi${newOriginalPost.id}`);
+function appendReactions (newEntry) {      // This function is called for every new original entry (both posts and giffs)
+  const post = document.getElementById(`postLi${newEntry.id}`);
   
-  reactionId = newOriginalPost.id;
     const reactionContainer = document.createElement("div");
     reactionContainer.setAttribute("class","reaction-container")
   
       const positiveReaction = document.createElement("input");
-      positiveReaction.setAttribute("id", `posReact${newOriginalPost.id}`);
+      positiveReaction.setAttribute("id", `posReact${newEntry.id}`);
       positiveReaction.setAttribute("type", "button");
+      positiveReaction.setAttribute("value", `${thumbsUp} ${newEntry.thumbsUp}`);
       positiveReaction.setAttribute("class","positiveBtn")
       positiveReaction.addEventListener('click', posReaction);
-      positiveReaction.setAttribute("value", `${thumbsUp} ${newOriginalPost.thumbsUp}`);
 
       const funnyReaction = document.createElement("input");
-      funnyReaction.setAttribute("id", `funReact${newOriginalPost.id}`);
+      funnyReaction.setAttribute("id", `funReact${newEntry.id}`);
       funnyReaction.setAttribute("type", "button");
+      funnyReaction.setAttribute("value", `${hilarious} ${newEntry.hilarious}`);
+      funnyReaction.setAttribute("class","funnyBtn")
       funnyReaction.addEventListener('click', funReaction);
-      funnyReaction.setAttribute("value", `${hilarious} ${newOriginalPost.hilarious}`);
 
       const negativeReaction = document.createElement("input");
-      negativeReaction.setAttribute("id", `negReact${newOriginalPost.id}`);
-      negativeReaction.setAttribute("class", "negativeBtn")
+      negativeReaction.setAttribute("id", `negReact${newEntry.id}`);
       negativeReaction.setAttribute("type", "button");
+      negativeReaction.setAttribute("value", `${thumbsDown} ${newEntry.thumbsDown}`);
+      negativeReaction.setAttribute("class", "negativeBtn")
       negativeReaction.addEventListener('click', negReaction);
-      negativeReaction.setAttribute("value", `${thumbsDown} ${newOriginalPost.thumbsDown}`);
 
     reactionContainer.append(positiveReaction);
     reactionContainer.append(funnyReaction);
@@ -198,10 +198,9 @@ function updateReaction (newReactions) {      // We fetch the latest value of ea
   newNegReact.setAttribute("value",`${thumbsDown} ${newReactions.thumbsDown}`)
 };
 
-function appendReplyForm (newOriginalPost) {      // This function is called for every new original entry (both posts and giffs)
+function appendReplyForm (newEntry) {      // This function is called for every new original entry (both posts and giffs)
   const newReplyThread = document.createElement('ul');
-
-  newReplyThread.setAttribute("id", `newReplyThread${newOriginalPost.id}`);
+  newReplyThread.setAttribute("id", `newReplyThread${newEntry.id}`);
 
     const formContainer = document.createElement('li');
 
@@ -209,7 +208,7 @@ function appendReplyForm (newOriginalPost) {      // This function is called for
       replyForm.addEventListener("submit", postReply);
 
         const replyTextBox = document.createElement('textarea');
-        replyTextBox.setAttribute("id", `${newOriginalPost.id}`);
+        replyTextBox.setAttribute("id", `${newEntry.id}`);
         replyTextBox.setAttribute('class',"reply-text-box")
         replyTextBox.setAttribute("name", "newReply");
 
