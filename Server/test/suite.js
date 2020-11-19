@@ -1,24 +1,25 @@
 const request = require("supertest")
 const app = require("../app.js")
-const port = process.env.PORT || 3000
+const port = 7000
+// const index = require("../../Client/index.js")
 
 describe("Api endpoints", () =>{
-    let api = app.listen(port, () => console.log(`starting test server on port ${port}`))
+    let api 
     let testPost = {id: 1, post: "originalPost", thumbsUp:0, hilarious:0, thumbsDown:0, replies:[]}
     
     
-    // before(()=> {
-    //     api = app.listen(port, () => console.log(`starting test server on port ${port}`))
-    // })
-
-    // after(done => {
-    //       console.log("stopping server")
-    //       api.close(done)
-    //       })
+    beforeEach(()=> {
+        api = app.listen(port, () => console.log(`starting test server on port ${port}`))
+    })
+    afterEach(done => {
+        console.log("stopping server")
+        api.close(done)
+        })
 
     it("responds to /", done => {
         request(api)
             .get("/")
+            .expect("Nothing to see here, move along!")
             .expect(200, done);
     })
     it("reponds to /feed", done => {
@@ -26,7 +27,7 @@ describe("Api endpoints", () =>{
             .get("/feed")
             .expect(200, done)
     })
-
+    
     it("reponds to post on /newpost", done => {
         request(api)
             .post("/newpost")
@@ -39,16 +40,20 @@ describe("Api endpoints", () =>{
         request(api)
             .post("/newreply")
             .send(testPost)
-            .send(testPost.replies)
             .expect(201, done)
     }) 
 
     it('404 everything else', done => {
-        request(app)
+        request(api)
             .get('/bob')
             .expect(404, done);
     });
 
-    
+    // it("will fail", done =>{
+    //     request(api)
+    //         .get("/hi")
+    //         .expect(200, done);
+    // })
 
+    
 })
