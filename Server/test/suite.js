@@ -1,34 +1,12 @@
 const request = require("supertest")
 const app = require("../app.js")
-<<<<<<< HEAD
 const port = 7000
 // const index = require("../../Client/index.js")
-=======
-<<<<<<< HEAD
-const index=require("../../client/index.js")
-const port = process.env.PORT || 3001
-=======
-const port = process.env.PORT || 3000
->>>>>>> 007b5ebb97c8324ca34485bd6e3f85f85505ebe9
-
-describe('fetchGif', () => {
-    let userAction = index.__get__("fetchGif");
-
-    it('should be a function', () => {
-        expect(fetchGif).to.be.a('function');
-    });
-
-    it('should submit new post', () => {
-        expect(fetchGif(hi)).to.equal();
-    })
-});
-
->>>>>>> a8ec376b340340bbecf4d83c81e6e36309bd8662
 
 describe("Api endpoints", () =>{
     let api 
-    let testPost = {id: 1, post: "originalPost", thumbsUp:0, hilarious:0, thumbsDown:0, replies:[]}
-    
+    let testPost = {id: 1, thumbsUp:0, hilarious:0, thumbsDown:0, replies:[]}
+    let testReply = "hello"
     
     beforeEach(()=> {
         api = app.listen(port, () => console.log(`starting test server on port ${port}`))
@@ -53,7 +31,7 @@ describe("Api endpoints", () =>{
     it("reponds to post on /newpost", done => {
         request(api)
             .post("/newpost")
-            .send(testPost)
+            .send('hello')
             .expect(testPost)
             .expect(201, done)
     })
@@ -61,7 +39,8 @@ describe("Api endpoints", () =>{
     it("responds to post on /newreply", done => {
         request(api)
             .post("/newreply")
-            .send(testPost)
+            .send(testReply)
+            .expect("hello")
             .expect(201, done)
     }) 
 
@@ -70,22 +49,5 @@ describe("Api endpoints", () =>{
             .get('/bob')
             .expect(404, done);
     });
-
-<<<<<<< HEAD
-    // it("will fail", done =>{
-    //     request(api)
-    //         .get("/hi")
-    //         .expect(200, done);
-    // })
-=======
-    it("reponds to post", done => {
-        request(api)
-            .post("/blogpost")
-            .send(testPost)
-            .expect(testPost)
-            .expect(201, done)
-    })
->>>>>>> a8ec376b340340bbecf4d83c81e6e36309bd8662
-
-    
 })
+
