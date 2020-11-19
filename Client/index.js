@@ -1,6 +1,6 @@
 const timelineUl = document.getElementById('originalPosts');
 const newPostForm = document.getElementById('newPostForm');
-newPostForm.addEventListener('submit', userAction);
+newPostForm.addEventListener("submit", userAction);
 
 let thumbsUp = "👍";
 let hilarious = "🤣";
@@ -9,7 +9,8 @@ let thumbsDown = "👎";
 function userAction (event) {           // Checks which button the user pressed and if the text is less than 150 characters
     event.preventDefault();
     if (event.submitter.value == "Post" && event.target.newPost.value.length < 150) {
-      sendPostToServer(event);
+        sendPostToServer(event);
+        flyAway();
     } else if (event.submitter.value == "Giphy" && event.target.newPost.value.length < 150) {
       fetchGif(event);
     } else {
@@ -94,10 +95,11 @@ function addGifToFeed (newGif) {        // We create a new gif entry and initial
 
 function addPost (newPost) {        // This displays the new post on the timeline
     const postLi = document.getElementById(`postLi${newPost.id}`);
-    const newPostPar = document.createElement('p');
-    newPostPar.setAttribute("class", "newPost")
-    newPostPar.textContent = `${newPost.post}`;
-    postLi.append(newPostPar);
+    const newTextArea = document.createElement('textarea');
+    newTextArea.setAttribute("class", "newPost")
+    newTextArea.setAttribute("readonly", "true")
+    newTextArea.textContent = `${newPost.post}`;
+    postLi.append(newTextArea);
 };
 
 function addGif (newGif) {          // This displays the new gif on the timeline
@@ -226,6 +228,7 @@ function addReplyForm (newEntry) {          // This creates the reply form benea
 
     const replyTextBox = document.createElement('textarea');
     replyTextBox.setAttribute("name", "newReply");
+    replyTextBox.setAttribute("maxlength", "150")
 
     const replyButton = document.createElement('input');
     replyButton.setAttribute("type", "submit");
@@ -261,7 +264,14 @@ function postReply (event) {            // We take the text written in the reply
 function appendReply (reply) {          // We append and display the reply as a list inside the reply thread
     const replyThread = document.getElementById(`replyThread${reply.id}`);  
     const newReplyLi = document.createElement('li');
-    newReplyLi.textContent = `${reply.replies[reply.replies.length-1]}`;
+    const newReplyBox = document.createElement('textarea');
+    newReplyBox.setAttribute("class", "newReply")
+    newReplyBox.setAttribute("readonly", "true")
+    newReplyBox.textContent = `${reply.replies[reply.replies.length-1]}`;
+    newReplyLi.append(newReplyBox);
     replyThread.append(newReplyLi);
 };
 
+function flyAway(){
+    document.getElementById('logo').classList.toggle("birdAnimation");
+}

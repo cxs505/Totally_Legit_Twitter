@@ -1,6 +1,4 @@
 * {
-    /* text-align: center; */
-    /* border: 1px solid black; */
     margin:0;
     padding:0;
 }
@@ -15,8 +13,30 @@ header {
 
 header img {
     display: inline;
+    position: fixed;
     float: left;
-    height: 100%
+    /* height: 100%; */
+    height: 75px;
+}
+
+@keyframes bird {
+    0%  {top:0px; left:0px;}
+    10% {top:5vh; left:10vw;}
+    20% {top:0vh; left:20vw;}
+    30% {top:5vh; left:30vw;}
+    40% {top:0vh; left:40vw;}
+    50% {top:5vh; left:50vw}
+    60% {top:0vh; left:60vw;}
+    70% {top:5vh; left:70vw}
+    80% {top:0vh; left:80vw;}
+    90% {top:-10vh; left:90vw;}
+    100%{top:-20vh; left:120vw;}
+}
+
+.birdAnimation {
+    animation-name: bird;
+    animation-duration: 4s;
+    animation-timing-function: linear;
 }
 
 header nav {
@@ -29,11 +49,8 @@ header nav a {
     display: inline-block;
     padding: 12px;
     color: white;
+    font-family: 'Roboto', sans-serif;
     text-shadow: 0 0 4px black;
-}
-
-li {
-    list-style: none;
 }
 
 a:link {
@@ -54,6 +71,7 @@ h1 {
     padding: 10px;
     font-size: x-large;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
     color: rgb(100, 100, 100);
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -64,10 +82,18 @@ h1 {
     padding-top: 10px;
     font-size: large;
     text-align: center;
+    background-color  :rgba(173, 216, 230, 0.5);
     border-right: 4px double black;
 }
 
+#newPostForm {
+    position: fixed;
+    width: 30%;
+}
+
+
 #newPostForm label {
+    font-family: 'Roboto', sans-serif;
     font-size: x-large;
 }
 
@@ -75,6 +101,7 @@ h1 {
     min-height: 200px;
     width: 90%;
     margin: 10px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 textarea {
@@ -86,11 +113,13 @@ textarea {
 
 input[type=submit]{
     width: 75px;
+    height: 32px;
     margin: 4 8 4 8;
     padding: 4 8 4 8;
     border: 2px solid rgb(100, 100, 100);
     border-radius: 10px;
-    background-color: inherit;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 input[type=submit]:hover {
@@ -99,12 +128,10 @@ input[type=submit]:hover {
 }
 
 input[type=button]{
-    width: 65px;
-    margin: 4 8 4 8;
+    width: 30%;
     padding: 4 8 4 8;
     border: none;
-    /* border: 2px solid rgb(100, 100, 100);
-    border-radius: 10px; */
+    font-family: 'Roboto', sans-serif;
     background-color: inherit;
 }
 
@@ -114,6 +141,7 @@ input[type=button]:hover {
 
 #timeline {
     width: 70%;
+    background-color : rgba(240, 160, 80, 0.20);
 }
 
 #originalPosts {
@@ -127,6 +155,7 @@ footer {
     position: sticky;
     font-size: medium;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
     background-color: lightblue;
     color: white;
     border-top: 1px solid black;
@@ -142,33 +171,62 @@ footer a:hover {
     color: rgb(50, 50, 50);
 }
 
-
-
 .newEntry {
-    border: 1px solid black;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    list-style: none;
+    border-bottom: 1px solid  rgb(100, 100, 100);
 }
 
 .newPost {
-    border: 1px solid red;
-
+    min-height: 80px;
+    width: 60%;
+    padding: 5px;
+    font-size: large;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .newGif {
-    border: 1px solid red;
-
+    width: 60%;
+    border: 1px solid black;
 }
 
 .reactionForm {
-    border: 1px solid green
-
+    width: 60%;
+    font-size: large;
+    text-align: center;
+    margin: 5 0 5 0;
 }
 
 .replyThread {
-    border: 1px solid gold;
+    width: 60%;
+    margin-left: 25%;
+}
 
+.replyThread li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.newReply {
+    width: 100%;
+    padding: 5px;
+    font-size: medium;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .replyForm {
-    border: 1px solid blue
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+}
 
+.replyForm textarea {
+    min-height: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
 }
