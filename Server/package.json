@@ -4,9 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --reporter=nyan",
+    "coverage": "nyc --reporter=text npm run test",
     "start": "nodemon app.js"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "chai": "^4.2.0",
     "rewire": "^5.0.0",
     "nodemon": "^2.0.6",
+    "nyc": "^15.1.0",
     "supertest": "^6.0.1"
   },
   "dependencies": {
