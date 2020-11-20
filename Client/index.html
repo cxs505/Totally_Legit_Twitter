@@ -2,29 +2,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> Legit Twitter </title>
+    <link rel="icon" href="Femfoyou-Blue-Angry-Bird.ico" type="image/icon type">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg==" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css" type="text/css">
     <script defer src="index.js"></script>
 </head>
 <body>
     <header>
-        <h1>Welcome to twitter</h1>
-
+        <img id="logo" src="Blue-Angry-Bird-Logo.png" alt="Legit Twitter Logo">
+        <nav>
+            <a href="#timeline"> Home </a>
+            <a href="#"> Login </a>
+        </nav>
+        <!-- <h1> Welcome to the new, improved and totally legit Twitter! </h1> -->
     </header>
+    <h1> Welcome to the new, improved and totally legit Twitter! </h1>
     <main>
         <div id="formContainer">
-            <form id="newPost">
-                <input type="text">
-                <input type="submit">
+            <form id="newPostForm">
+                <label for="newPost"> What is on your mind? </label><br>
+                <textarea id="newPost" name="newPost" maxlength="150"></textarea>
+                <div id="newPostBtnContainer">
+                    <input type="submit" value="Post" id='newPostButton' name="userAction">
+                    <input type="submit" value="Giphy" id='giphyButton' name="userAction">
+                </div>
             </form>
         </div>
-        <div    id="timeline">
-
+        <div id="timeline">
+            <ul id="originalPosts">
+               
+            </ul>
         </div>
     </main>
     <footer>
-
+        <a href="https://github.com/StylianosThomas"> Stylianos Thomas </a>
+        <a href="https://github.com/cxs505"> Charlie Simms </a>
+        <a href="https://github.com/RishabhRawat98"> Rishabh Rawat </a>
+        <p>Created on the 11th month during the year of the plague</p>
     </footer>
 </body>
 </html>

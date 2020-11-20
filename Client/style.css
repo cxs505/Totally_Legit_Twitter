@@ -1,0 +1,232 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+header {
+    position: sticky;
+    width: 100%;
+    height: 8vh;
+    background-color : lightblue;
+    font-size: x-large;
+}
+
+header img {
+    display: inline;
+    position: fixed;
+    float: left;
+    /* height: 100%; */
+    height: 75px;
+}
+
+@keyframes bird {
+    0%  {top:0px; left:0px;}
+    10% {top:5vh; left:10vw;}
+    20% {top:0vh; left:20vw;}
+    30% {top:5vh; left:30vw;}
+    40% {top:0vh; left:40vw;}
+    50% {top:5vh; left:50vw}
+    60% {top:0vh; left:60vw;}
+    70% {top:5vh; left:70vw}
+    80% {top:0vh; left:80vw;}
+    90% {top:-10vh; left:90vw;}
+    100%{top:-20vh; left:120vw;}
+}
+
+.birdAnimation {
+    animation-name: bird;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+}
+
+header nav {
+    display: inline;
+    float: right;
+    margin: 12px;
+}
+
+header nav a {
+    display: inline-block;
+    padding: 12px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 4px black;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    min-height: 80.6vh;
+}
+
+h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: x-large;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(100, 100, 100);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#formContainer {
+    width: 30%;
+    padding-top: 10px;
+    font-size: large;
+    text-align: center;
+    background-color  :rgba(173, 216, 230, 0.5);
+    border-right: 4px double black;
+}
+
+#newPostForm {
+    position: fixed;
+    width: 30%;
+}
+
+
+#newPostForm label {
+    font-family: 'Roboto', sans-serif;
+    font-size: x-large;
+}
+
+#newPost {
+    min-height: 200px;
+    width: 90%;
+    margin: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+textarea {
+    padding: 5px;
+    border-radius: 5px;
+    text-align: left;
+    resize:none;
+}
+
+input[type=submit]{
+    width: 75px;
+    height: 32px;
+    margin: 4 8 4 8;
+    padding: 4 8 4 8;
+    border: 2px solid rgb(100, 100, 100);
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+input[type=submit]:hover {
+    font-weight: bold;
+    border: 2px solid rgb(50, 50, 50);
+}
+
+input[type=button]{
+    width: 30%;
+    padding: 4 8 4 8;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    background-color: inherit;
+}
+
+input[type=button]:hover {
+    font-weight: bold;
+}
+
+#timeline {
+    width: 70%;
+    background-color : rgba(240, 160, 80, 0.20);
+}
+
+#originalPosts {
+    height: 100%;
+    padding: 10px;
+}
+
+footer {
+    height: 6vh;
+    width: 100%;
+    position: sticky;
+    font-size: medium;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background-color: lightblue;
+    color: white;
+    border-top: 1px solid black;
+}
+
+footer a {
+    margin: 5 20 5 20;
+    display: inline-block;
+    color: rgb(100, 100, 100);
+}
+
+footer a:hover {
+    color: rgb(50, 50, 50);
+}
+
+.newEntry {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    list-style: none;
+    border-bottom: 1px solid  rgb(100, 100, 100);
+}
+
+.newPost {
+    min-height: 80px;
+    width: 60%;
+    padding: 5px;
+    font-size: large;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.newGif {
+    width: 60%;
+    border: 1px solid black;
+}
+
+.reactionForm {
+    width: 60%;
+    font-size: large;
+    text-align: center;
+    margin: 5 0 5 0;
+}
+
+.replyThread {
+    width: 60%;
+    margin-left: 25%;
+}
+
+.replyThread li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.newReply {
+    width: 100%;
+    padding: 5px;
+    font-size: medium;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.replyForm {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+}
+
+.replyForm textarea {
+    min-height: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
