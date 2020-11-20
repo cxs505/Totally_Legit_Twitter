@@ -38,7 +38,7 @@ Our first group project with the goal to create a community journaling website.
 - Add the ability to receive and append new replies to original posts
 - Return all new replies to be displayed for all users
 
-## Goal No.3 (Work in progress)
+## Goal No.3 (Reached)
 - Add the ability to react with emojis to original posts
 - Add the ability to post gifs from giphy
 - Increase test coverage to above 60%
