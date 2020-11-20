@@ -39,10 +39,16 @@ describe("Api endpoints", () =>{
     it("responds to post on /newreply", done => {
         request(api)
             .post("/newreply")
-            .send(testReply)
-            .expect("hello")
+            .send("hello")
             .expect(201, done)
     }) 
+
+    it("responds to emojis", done => {
+        request(api)
+            .post("/posreaction")
+            .send(testPost.thumbsDown)
+            .expect(201, done)
+    })
 
     it('404 everything else', done => {
         request(api)
