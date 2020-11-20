@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.listen(port, () => console.log(`Server started! Visit http://localhost:${port}`));
+app.listen(port, () => console.log(`Server started! Visit http://localhost:${port}`));
 
 //data from the posts will be stored here
 const timeline = [];

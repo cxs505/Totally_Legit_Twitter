@@ -274,4 +274,4 @@ function appendReply (reply) {          // We append and display the reply as a 
 
 function flyAway(){
     document.getElementById('logo').classList.toggle("birdAnimation");
-}
+};
